@@ -31,7 +31,8 @@
                                         <h5 class="card-title">{{ $post->title }}</h5>
                                         <p class="card-text">{{ $post->description }}</p>
                                         <div class="d-flex justify-content-between">
-                                            <a href="./detail.html" class="read-more">Read More</a>
+                                            <a href="{{ route('blog.detail', ['id' => $post->id]) }}" class="read-more">Read
+                                                More</a>
                                             <a class="text-decoration-none text-dark fw-bold"
                                                 href="#">{{ $post->category }}</a>
                                         </div>

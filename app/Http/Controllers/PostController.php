@@ -10,17 +10,27 @@ class PostController extends Controller
     {
         $title = 'Blog Post';
 
-        $posts = json_decode(json_encode([
-            // ['title' => 'Post 1', 'description' => 'description 1', 'category' => 'Sports'],
-            // ['title' => 'Post 2', 'description' => 'description 2', 'category' => 'Politics']
-        ]));
+        $posts = $this->getPost();
 
         return view('post.index', compact('title', 'posts'));
     }
 
-    public function detail()
+    public function detail($id)
     {
-        $title = 'Blog Detail';
-        return view('post.detail', compact('title'));
+        $posts = $this->getPost();
+
+        $post = collect($posts)->firstWhere('id', $id);
+
+        $title = $post->title;
+
+        return view('post.detail', compact('post', 'title'));
+    }
+
+    private function getPost()
+    {
+        return json_decode(json_encode([
+            ['id' => 1, 'title' => 'Post 1', 'description' => 'description 1', 'category' => 'Sports'],
+            ['id' => 2, 'title' => 'Post 2', 'description' => 'description 2', 'category' => 'Politics']
+        ]));
     }
 }
