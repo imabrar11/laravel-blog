@@ -25,11 +25,11 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="https://placehold.co/400" class="img-fluid" alt="...">
+                                        <img src="{{ $post->img_path }}" class="img-fluid" alt="...">
                                     </div>
                                     <div class="col-md-8">
                                         <h5 class="card-title">{{ $post->title }}</h5>
-                                        <p class="card-text">{{ $post->description }}</p>
+                                        <p class="card-text">{{ Str::limit($post->description, 30, '...') }}</p>
                                         <div class="d-flex justify-content-between">
                                             <a href="{{ route('blog.detail', ['id' => $post->id]) }}" class="read-more">Read
                                                 More</a>

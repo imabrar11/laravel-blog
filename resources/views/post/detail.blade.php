@@ -6,9 +6,8 @@
         <div class="row">
             <div class="col-lg-8">
                 <h1 class="mb-4">{{ $post->title }}</h1>
-                <p class="text-muted">Posted on January 1, 2024</p>
-                <img src="https://www.ijwhite.com/wp-content/uploads/2017/05/placeholder-800x400.jpeg" class="img-fluid mb-4"
-                    alt="Blog Image">
+                <p class="text-muted">Posted on {{ $post->created_at->format('M d, Y') }}</p>
+                <img src="{{ $post->img_path }}" class="img-fluid mb-4" alt="Blog Image">
                 <p>{{ $post->description }}</p>
             </div>
             <div class="col-lg-4">

@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\PostModel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PostSeeder extends Seeder
 {
@@ -83,12 +85,12 @@ class PostSeeder extends Seeder
         ];
 
         foreach ($titles as $index => $title) {
-            DB::table('posts')->insert([
+
+            PostModel::create([
                 'title' => $title,
+                'slug' => Str::slug($title),
                 'description' => $descriptions[$index],
-                'img_path' => $img_paths[$index],
-                'created_at' => now(),
-                'updated_at' => now()
+                'img_path' => $img_paths[$index]
             ]);
         }
     }
