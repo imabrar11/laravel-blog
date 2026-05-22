@@ -5,7 +5,7 @@
 
         <div class="row">
             <div class="col-lg-8">
-                <h1 class="mb-4">{{ $post->title }}</h1>
+                <h1 class="mb-4">{{ $post->title }} <span class="badge bg-primary fs-6">Primary</span></h1>
                 <p class="text-muted">Posted on {{ $post->created_at->format('M d, Y') }}</p>
                 <img src="{{ $post->img_path }}" class="img-fluid mb-4" alt="Blog Image">
                 <p>{{ $post->description }}</p>
@@ -15,9 +15,13 @@
                     <div class="card-body">
                         <h5 class="card-title">Related Posts</h5>
                         <ul class="list-unstyled">
-                            <li><a href="./detail.html">Post 1</a></li>
-                            <li><a href="./detail.html">Post 2</a></li>
-                            <li><a href="./detail.html">Post 3</a></li>
+                            @if ($relatedPosts)
+                                @foreach ($relatedPosts as $relatedPost)
+                                    <li><a
+                                            href="{{ route('blog.detail', ['slug' => $relatedPost->slug]) }}">{{ $relatedPost->title }}</a>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                 </div>

@@ -5,7 +5,7 @@
         </div>
         <div class="col">
             <div class="d-flex justify-content-center gap-3">
-                <a class="text-light text-decoration-none" href="">Home</a>
+                <a class="text-light text-decoration-none" href="{{ url('/') }}">Home</a>
                 <a class="text-light text-decoration-none" href="">About</a>
                 <a class="text-light text-decoration-none" href="">Contact</a>
             </div>

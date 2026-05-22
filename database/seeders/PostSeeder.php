@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\PostModel;
+use App\Models\CategoryModel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -83,10 +84,11 @@ class PostSeeder extends Seeder
             "https://picsum.photos/id/19/800/400",
             "https://picsum.photos/id/20/800/400",
         ];
-
+        $categories = CategoryModel::all();
         foreach ($titles as $index => $title) {
-
+            $category = $categories->random();
             PostModel::create([
+                'category_id' => $category->id,
                 'title' => $title,
                 'slug' => Str::slug($title),
                 'description' => $descriptions[$index],

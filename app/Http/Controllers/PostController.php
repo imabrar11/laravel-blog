@@ -16,15 +16,26 @@ class PostController extends Controller
         return view('post.index', compact('title', 'posts'));
     }
 
-    public function detail($id)
+    public function detail($slug)
     {
 
         try {
-            $post = PostModel::findOrFail($id);
+
+            $post = PostModel::where('slug', $slug)->first();
+            if (!$post) {
+
+                throw new \Illuminate\Database\Eloquent\ModelNotFoundException;
+            }
             $title = $post->title;
-            return view('post.detail', compact('post', 'title'));
+            $category = $post->category;
+            $relatedPosts = PostModel::where('category_id', $category->id)
+                ->where('id', '!=', $post->id)
+                ->take(5)
+                ->get();
+            return view('post.detail', compact('post', 'title', 'relatedPosts'));
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $ex) {
-            return response()->view('errors.404', [], 404);
+
+            return response()->view('errors.404', ['title' => '404 Not Found'], 404);
         }
     }
 

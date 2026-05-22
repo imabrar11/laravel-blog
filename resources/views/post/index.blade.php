@@ -31,10 +31,11 @@
                                         <h5 class="card-title">{{ $post->title }}</h5>
                                         <p class="card-text">{{ Str::limit($post->description, 30, '...') }}</p>
                                         <div class="d-flex justify-content-between">
-                                            <a href="{{ route('blog.detail', ['id' => $post->id]) }}" class="read-more">Read
+                                            <a href="{{ route('blog.detail', ['slug' => $post->slug]) }}"
+                                                class="read-more">Read
                                                 More</a>
                                             <a class="text-decoration-none text-dark fw-bold"
-                                                href="#">{{ $post->category }}</a>
+                                                href="#">{{ $post->category->name }}</a>
                                         </div>
                                     </div>
                                 </div>

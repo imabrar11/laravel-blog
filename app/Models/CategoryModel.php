@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use App\Models\CategoryModel;
 
-class PostModel extends Model
+class CategoryModel extends Model
 {
-    protected $table = 'posts';
-    protected $fillable = ['title', 'slug', 'description', 'img_path'];
+    protected $table = 'categories';
+    protected $fillable = ['name', 'slug'];
 
     public function setTitleAttribute($value)
     {
@@ -24,10 +23,5 @@ class PostModel extends Model
         }
 
         $this->attributes['slug'] = $slug;
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(CategoryModel::class);
     }
 }
