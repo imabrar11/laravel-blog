@@ -7,13 +7,18 @@ use App\Models\PostModel;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $title = 'Blog Post';
+        // dd($request->search);
+        $query = PostModel::query();
 
-        $posts = PostModel::all();
+        if ($request->has('search') && !empty($request->search)) {
+            $query->where('title', 'like', '%' . $request->search . '%')
+                ->orWhere('description', 'like', '%' . $request->search . '%')->get();
+        }
+        $posts = $query->paginate(6);
 
-        return view('post.index', compact('title', 'posts'));
+        return view('post.index', compact('posts'));
     }
 
     public function detail($slug)

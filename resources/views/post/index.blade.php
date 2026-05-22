@@ -8,12 +8,14 @@
                 <h2>Latest Posts</h2>
             </div>
             <div class="col-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search">
-                    <button class="btn btn-outline-light btn-primary " type="button" id="button-search">
-                        <i class="bi bi-search"></i> <!-- Bootstrap Icons -->
-                    </button>
-                </div>
+                <form action="{{ route('post.index') }}" method="get">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" placeholder="Search..." aria-label="Search">
+                        <button class="btn btn-outline-light btn-primary " type="submit" id="button-search">
+                            <i class="bi bi-search"></i> <!-- Bootstrap Icons -->
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="row m-3">
@@ -51,35 +53,13 @@
 
             <div class="col-12 my-3">
                 <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="?page=1" aria-label="First">
-                                <span aria-hidden="true">&laquo; first</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page=1" aria-label="Previous">
-                                <span aria-hidden="true">previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><span class="page-link">Page 3 of 20.</span></li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page=4" aria-label="Next">
-                                <span aria-hidden="true">next</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page=20" aria-label="Last">
-                                <span aria-hidden="true">last &raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
+
                 </nav>
 
             </div>
         </div>
         <div class="row">
-
+            {{ $posts->links('pagination::bootstrap-5') }}
         </div>
 
     </div>
